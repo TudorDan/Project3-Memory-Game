@@ -2,6 +2,11 @@
  * Create a list that holds all of your cards
  */
 
+//create the font awesome set of cards from the set of li from index.html
+let symbols = ['fa-diamond', 'fa-diamond', 'fa-anchor', 'fa-anchor',
+		'fa-paper-plane-o', 'fa-paper-plane-o', 'fa-bolt', 'fa-bolt',
+		'fa-cube', 'fa-cube', 'fa-bicycle', 'fa-bicycle',
+		'fa-bomb', 'fa-bomb', 'fa-leaf', 'fa-leaf'];
 
 /*
  * Display the cards on the page
