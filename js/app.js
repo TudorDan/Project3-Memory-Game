@@ -42,7 +42,7 @@ function displayCards() {
  		//create a li tag like in the html starter code
  		let card = document.createElement('li');
  		//insert the text tag into the card tag
- 		card.insertAdjacentHTML('afterbegin', text);
+ 		card.appendChild(text);
  		//set the class for the card tag like in the html starter code
  		card.setAttribute('class', 'card');
  		//add the card element to the deck variable
