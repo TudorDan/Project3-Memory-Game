@@ -8,12 +8,19 @@ let symbols = ['fa-diamond', 'fa-diamond', 'fa-anchor', 'fa-anchor',
 		'fa-cube', 'fa-cube', 'fa-bicycle', 'fa-bicycle',
 		'fa-bomb', 'fa-bomb', 'fa-leaf', 'fa-leaf'];
 
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+
+//add a counter for the number of moves
+let moveCounter = 0;
+//add a counter for the number of matched cards
+let matchedCards = 0;
+
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
