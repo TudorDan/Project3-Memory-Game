@@ -21,6 +21,34 @@ let moveCounter = 0;
 //add a counter for the number of matched cards
 let matchedCards = 0;
 
+//create a function to display the cards on the page
+function displayCards() {
+	//declare a variable where we will add the cards
+	let deck = document.querySelector('.deck');
+
+	//remove old set of cards if present
+	while (deck.hasChildNodes())  //method to check if deck has a child
+		deck.removeChild(deck.firstChild); //keep removing while true
+
+	//add new shuffled cards from the provided function
+ 	shuffle(symbols);
+
+ 	//loop through each card from the symbols set of cards
+ 	for (let symbol of symbols) {
+ 		//create an i tag like in the html starter code
+ 		let text = document.createElement('i');
+ 		//set font awesome class and an element from the symbols set
+ 		text.setAttribute('class', 'fa ' + symbol);
+ 		//create a li tag like in the html starter code
+ 		let card = document.createElement('li');
+ 		//insert the text tag into the card tag
+ 		card.insertAdjacentHTML('afterbegin', text);
+ 		//set the class for the card tag like in the html starter code
+ 		card.setAttribute('class', 'card');
+ 		//add the card element to the deck variable
+ 		deck.appendChild(card);
+ 	}
+}
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
