@@ -48,6 +48,9 @@ function displayCards() {
  		//add the card element to the deck variable
  		deck.appendChild(card);
  	}
+
+ 	//reset number of matched cards
+ 	matchedCards = 0;
 }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
