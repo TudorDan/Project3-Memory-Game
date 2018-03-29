@@ -52,6 +52,7 @@ function displayCards() {
 
  	//reset move counter
  	moveCounter = 0;
+ 	updateMoveCounter(moveCounter);
 
  	//reset number of matched cards
  	matchedCards = 0;
@@ -118,8 +119,8 @@ function processList(openCards) {
 	//check if the openCards list already has another card
 	if(openCards.length > 1) {
 		//extract first two cards from openCards list
-		const card1 = openCards.splice(0, 1);
-		const card2 = openCards.splice(0, 1);
+		const card1 = openCards.pop();
+		const card2 = openCards.pop();
 		//check if the cards match
 		if(card1.firstChild.className === card2.firstChild.className) {
 			//if the cards do match, lock the cards in the open position (function is defined below)
@@ -146,4 +147,12 @@ function lockCards(card1, card2) {
 		card1.className = 'card match';
 		card2.className = 'card match';
 	}, 600); //add 0.6 seconds delay for better user interaction
+}
+
+//define the hideCards function from the processList function
+function hideCards(card1, card2) {
+	setTimeout( function() {
+		card1.className = 'card';
+		card2.className = 'card';
+	}, 600);
 }
