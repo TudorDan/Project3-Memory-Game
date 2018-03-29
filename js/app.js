@@ -53,6 +53,7 @@ function displayCards() {
  	matchedCards = 0;
 }
 
+
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -79,3 +80,7 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
+//declare the set of opened cards, starting with all of them closed
+let openCards = [];
+
