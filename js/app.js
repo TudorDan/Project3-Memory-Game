@@ -27,8 +27,8 @@ let deck = document.querySelector('.deck');
 //create a function to display the cards on the page
 function displayCards() {//called onload body and on click restart
 
-	//remove old set of cards if present
-	while (deck.classList.contains('card'))  //check if deck has a class
+	//remove old set of cards if present, with hasChildNodes() method from MDN Web Docs
+	while (deck.hasChildNodes())  //check if deck has a child
 		deck.removeChild(deck.firstChild); //keep removing while true
 
 	//add new shuffled cards from the provided function
@@ -167,3 +167,9 @@ function checkEndGame() {
 	if(matchedCards === 16)
 		console.log("bingo");
 }
+
+//define restart function
+let reloadDeck = document.querySelector('.fa-repeat');
+reloadDeck.addEventListener('click', function() {
+	displayCards();
+});
