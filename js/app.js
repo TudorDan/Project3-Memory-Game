@@ -87,8 +87,8 @@ let openCards = [];
 
 //set up the event listener for a card
 deck.addEventListener('click', function processClickOn(card) {
-	//check if a card was clicked and if its class name is card
-	if(card.target && card.target.className === 'card') {
+	//check if a card was clicked (if its class name is card)
+	if(card.target.className === 'card') {
 		//display the card's symbol (function is defined below)
 		showCard(card.target);
 		//add the card to a *list* of "open" cards (function is defined below)
@@ -98,8 +98,14 @@ deck.addEventListener('click', function processClickOn(card) {
 	}
 });
 
-//define the showCard function from processClickOn
+//define the showCard function from the processClickOn function
 function showCard(card) {
 	//display the card's symbol like in the html starter code
 	card.className = 'card open show';
+}
+
+//define the addCard function from the processClickOn function
+function addCard(card, openCards) {
+	//since the card is opened, add it to the openCards set defined above
+	openCards.push(card);
 }
