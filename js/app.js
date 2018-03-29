@@ -120,8 +120,9 @@ function processList(openCards) {
 		//extract first two cards from openCards list
 		const card1 = openCards.splice(0, 1);
 		const card2 = openCards.splice(0, 1);
-		//if the cards do match, lock the cards in the open position (function is defined below)
+		//check if the cards match
 		if(card1.firstChild.className === card2.firstChild.className) {
+			//if the cards do match, lock the cards in the open position (function is defined below)
 			lockCards(card1, card2);
 			//increment number of matched cards by 2
 			matchedCards += 2;
