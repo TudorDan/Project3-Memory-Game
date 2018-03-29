@@ -21,10 +21,12 @@ let moveCounter = 0;
 //add a counter for the number of matched cards
 let matchedCards = 0;
 
+//declare a variable where we will add the cards
+	let deck = document.querySelector('.deck');
+
 //create a function to display the cards on the page
 function displayCards() {
-	//declare a variable where we will add the cards
-	let deck = document.querySelector('.deck');
+	
 
 	//remove old set of cards if present
 	while (deck.hasChildNodes())  //method to check if deck has a child
@@ -34,7 +36,7 @@ function displayCards() {
  	shuffle(symbols);
 
  	//loop through each card from the symbols set of cards
- 	for (let symbol of symbols) {
+ 	for (let symbol of symbols) { //called onload body and on click restart
  		//create an i tag like in the html starter code
  		let text = document.createElement('i');
  		//set font awesome class and an element from the symbols set
@@ -83,4 +85,17 @@ function shuffle(array) {
 
 //declare the set of opened cards, starting with all of them closed
 let openCards = [];
+
+//set up the event listener for a card
+deck.addEventListener('click', function processClickOn(card) {
+	//check if a card was clicked and if its class name is card
+	if(card.target && card.target.className === 'card') {
+		//display the card's symbol (function is defined below)
+		showCard(card.target);
+		//add the card to a *list* of "open" cards (function is defined below)
+		addCard(card.target, openCards);
+		//check to see if two open cards match (function is defined below)
+		processList(openCards);
+	}
+});
 
