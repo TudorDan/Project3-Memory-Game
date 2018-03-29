@@ -25,7 +25,7 @@ let matchedCards = 0;
 let deck = document.querySelector('.deck');
 
 //create a function to display the cards on the page
-function displayCards() {
+function displayCards() {//called onload body and on click restart
 
 	//remove old set of cards if present
 	while (deck.classList.contains('card'))  //check if deck has a class
@@ -35,7 +35,7 @@ function displayCards() {
  	shuffle(symbols);
 
  	//loop through each card from the symbols set of cards
- 	for (let symbol of symbols) { //called onload body and on click restart
+ 	for (let symbol of symbols) {
  		//create an i tag like in the html starter code
  		let text = document.createElement('i');
  		//set font awesome class and an element from the symbols set
@@ -100,6 +100,8 @@ deck.addEventListener('click', function processClickOn(card) {
 		//check to see if two open cards match (function is defined below)
 		processList(openCards);
 	}
+	//update and display moveCounter
+		updateMoveCounter(++moveCounter);
 });
 
 //define the showCard function from the processClickOn function
@@ -132,9 +134,6 @@ function processList(openCards) {
 		else
 			hideCards(card1, card2);
 
-		//update and display moveCounter
-		updateMoveCounter(++moveCounter);
-
 		//check if all cards have matched (function is defined below)
 		checkEndGame();
 	}
@@ -159,6 +158,12 @@ function hideCards(card1, card2) {
 }
 
 //define function to update the move counter
-function updateMoveCounter(aMove) {
-	document.querySelector('.moves').innertHTML = aMove;
+function updateMoveCounter(moves) {
+	document.getElementById('moves').innerHTML = moves;
+}
+
+//define function to check if all cards have matched
+function checkEndGame() {
+	if(matchedCards === 16)
+		console.log("bingo");
 }
