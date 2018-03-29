@@ -22,7 +22,7 @@ let moveCounter = 0;
 let matchedCards = 0;
 
 //declare a variable where we will add the cards
-	let deck = document.querySelector('.deck');
+let deck = document.querySelector('.deck');
 
 //create a function to display the cards on the page
 function displayCards() {
@@ -49,6 +49,9 @@ function displayCards() {
  		//add the card element to the deck variable
  		deck.appendChild(card);
  	}
+
+ 	//reset move counter
+ 	moveCounter = 0;
 
  	//reset number of matched cards
  	matchedCards = 0;
@@ -82,7 +85,7 @@ function shuffle(array) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
-//declare the set of opened cards, starting with all of them closed
+//declare the list of opened cards, starting with all of them closed
 let openCards = [];
 
 //set up the event listener for a card
@@ -106,6 +109,40 @@ function showCard(card) {
 
 //define the addCard function from the processClickOn function
 function addCard(card, openCards) {
-	//since the card is opened, add it to the openCards set defined above
+	//since the card is opened, add it to the openCards list defined above
 	openCards.push(card);
+}
+
+//define the processList function from the processClickOn function
+function processList(openCards) {
+	//check if the openCards list already has another card
+	if(openCards.length > 1) {
+		//extract first two cards from openCards list
+		const card1 = openCards.splice(0, 1);
+		const card2 = openCards.splice(0, 1);
+		//if the cards do match, lock the cards in the open position (function is defined below)
+		if(card1.firstChild.className === card2.firstChild.className) {
+			lockCards(card1, card2);
+			//increment number of matched cards by 2
+			matchedCards += 2;
+		}
+		//if the cards do not match, remove the cards from the list (function is defined below)
+		else
+			hideCards(card1, card2);
+
+		//update and display moveCounter
+		updateMoveCounter(++moveCounter);
+
+		//check if all cards have matched (function is defined below)
+		checkEndGame();
+	}
+}
+
+//define the lockCards function from the processList function
+function lockCards(card1, card2) {
+	setTimeout( function() {
+		//display the card's class name like in the html starter code
+		card1.className = 'card match';
+		card2.className = 'card match';
+	}, 600); //add 0.6 seconds delay for better user interaction
 }
