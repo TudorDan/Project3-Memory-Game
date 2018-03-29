@@ -28,7 +28,7 @@ let deck = document.querySelector('.deck');
 function displayCards() {
 
 	//remove old set of cards if present
-	while (deck.hasChildNodes())  //method to check if deck has a child
+	while (deck.classList.contains('card'))  //check if deck has a class
 		deck.removeChild(deck.firstChild); //keep removing while true
 
 	//add new shuffled cards from the provided function
@@ -152,7 +152,13 @@ function lockCards(card1, card2) {
 //define the hideCards function from the processList function
 function hideCards(card1, card2) {
 	setTimeout( function() {
+		//change the card's class name back to card, so that it hides the symbol
 		card1.className = 'card';
 		card2.className = 'card';
-	}, 600);
+	}, 600); //add 0.6 seconds delay for better user interaction
+}
+
+//define function to update the move counter
+function updateMoveCounter(aMove) {
+	document.querySelector('.moves').innertHTML = aMove;
 }
