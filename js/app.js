@@ -26,7 +26,6 @@ let matchedCards = 0;
 
 //create a function to display the cards on the page
 function displayCards() {
-	
 
 	//remove old set of cards if present
 	while (deck.hasChildNodes())  //method to check if deck has a child
@@ -99,3 +98,8 @@ deck.addEventListener('click', function processClickOn(card) {
 	}
 });
 
+//define the showCard function from processClickOn
+function showCard(card) {
+	//display the card's symbol like in the html starter code
+	card.className = 'card open show';
+}
