@@ -91,6 +91,9 @@ let openCards = [];
 
 //set up the event listener for a card
 deck.addEventListener('click', function processClickOn(card) {
+	//update and display moveCounter
+	updateMoveCounter(++moveCounter);
+
 	//check if a card was clicked (if its class name is card)
 	if(card.target.className === 'card') {
 		//display the card's symbol (function is defined below)
@@ -100,8 +103,6 @@ deck.addEventListener('click', function processClickOn(card) {
 		//check to see if two open cards match (function is defined below)
 		processList(openCards);
 	}
-	//update and display moveCounter
-		updateMoveCounter(++moveCounter);
 });
 
 //define the showCard function from the processClickOn function
@@ -134,6 +135,9 @@ function processList(openCards) {
 		else
 			hideCards(card1, card2);
 
+		//update the number of stars
+		updateStars();
+
 		//check if all cards have matched (function is defined below)
 		checkEndGame();
 	}
@@ -159,13 +163,15 @@ function hideCards(card1, card2) {
 
 //define function to update the move counter
 function updateMoveCounter(moves) {
-	document.getElementById('moves').innerHTML = moves;
+	document.querySelector('.moves').innerHTML = moves;
 }
 
 //define function to check if all cards have matched
 function checkEndGame() {
+	//check if all cards are matched
 	if(matchedCards === 16)
-		console.log("bingo");
+		//write moves stats to modal
+		document.getElementById("stats_moves").innerHTML = moveCounter;
 }
 
 //define restart function
