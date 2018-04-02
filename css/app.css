@@ -18,7 +18,7 @@ body {
 
 body {
     background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
-    font-family: 'Coda', cursive;
+    font-family: 'Ewert', cursive;
 }
 
 .container {
@@ -28,8 +28,9 @@ body {
     flex-direction: column;
 }
 
-h1 {
-    font-family: 'Open Sans', sans-serif;
+h1,
+h2 {
+    font-family: 'Ewert', sans-serif;
     font-weight: 300;
 }
 
