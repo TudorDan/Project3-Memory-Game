@@ -110,3 +110,30 @@ h2 {
     float: right;
     cursor: pointer;
 }
+
+
+/*Add flexbox layout for the modal*/
+@media (max-width:600px) {
+    .w3-modal-content {
+        margin:0 10px;
+        width:auto!important
+    }
+    .w3-modal {
+        padding-top:30px
+    }
+}
+
+@media (max-width:768px) {
+    .w3-modal-content {
+        width:500px
+    }
+    .w3-modal {
+        padding-top:50px
+    }
+}
+
+@media (min-width:993px) {
+    .w3-modal-content {
+        width:900px
+    }
+ }
