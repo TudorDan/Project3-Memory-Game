@@ -37,7 +37,16 @@
         </ul>
     </div>
 
-
+<!-- Introduce the Modal, based on the definiton from https://www.w3schools.com/w3css/w3css_modal.asp -->
+    <div id="modal" class="w3-modal  w3-animate-opacity">
+        <div class="w3-modal-content w3-animate-zoom">
+            <span onclick="displayCards()" class="w3-button w3-display-topright">&times;</span>
+            <h2>Yeeey! You finished the game!</h2>
+            <p>You made <span id="stats_moves"></span> moves in <span id="stats_time"></span> seconds.</p>
+            <p>Your rating is : <ul class="stars" id="stats_stars"></ul></p>
+            <div class="restart" onclick="displayCards()">  Do you want to <br> <span>start again ?</span> </div>
+        </div>
+    </div>
 
     <script src="js/app.js"></script>
 </body>
