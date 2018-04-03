@@ -36,6 +36,10 @@ let timer = 0;
 //flag for first move; true = first move, false = other moves; used to start time
 let firstClick = true;
 
+//set the number of visible stars
+let starCounter = 3;
+let stars = document.querySelector('.stars').getElementsByTagName('li'); //list of "star" elements
+
 //create a function to display the cards on the page
 function displayCards() {//called onload body and on click restart
 
@@ -74,6 +78,9 @@ function displayCards() {//called onload body and on click restart
  	timeCounter = 0;
  	if(timer) stopTime(timer);
  	writeTime(timeCounter);
+
+ 	//reset stars
+ 	resetStars();
 }
 
 
@@ -161,7 +168,8 @@ function processList(openCards) {
 		//update and display moveCounter
 		updateMoveCounter(++moveCounter);
 
-
+		//update stars
+		updateStars();
 
 		//check if all cards have matched (function is defined below)
 		checkEndGame();
@@ -198,9 +206,7 @@ function checkEndGame() {
 		//stop timer
 		stopTime();
 
-		console.log('STOP');
 	}
-	console.log('\ncards : ' + matchedCards);
 }
 
 //define restart function
@@ -227,4 +233,33 @@ function updateTime() {
 //stop the time counter
 function stopTime() {
 	clearInterval(timer);
+}
+
+/*
+*  Star functions
+*/
+//reset the number of stars on refresh or restart game
+function resetStars() {
+	starCounter = 3;
+	stars = document.querySelector('.stars').getElementsByTagName('li');
+	//iterate through the stars
+	for( let star of stars )
+		//display the stars if hidden
+		star.style.display = 'inline-block';
+}
+
+//hide the stars on certain numbers of moves
+function updateStars() {
+	if(moveCounter > 28) {
+		stars[0].style.display = 'none';
+		starCounter = 0;
+	}
+	else if(moveCounter > 24) {
+		stars[1].style.display = 'none';
+		starCounter = 1;
+	}
+	else if(moveCounter > 16) {
+		stars[2].style.display = 'none';
+		starCounter = 2;
+	}
 }
