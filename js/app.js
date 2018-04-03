@@ -246,7 +246,7 @@ reloadDeck.addEventListener('click', function() {
 /*
 * Timer functions
 */
-//define the time counter function
+//define the time counter function, based on the link from Udacity Part2 Lesson23 Performance
 function startTime() {
 	timer = setInterval(updateTime, 1000);// repeat with the interval of 1 second
 }
