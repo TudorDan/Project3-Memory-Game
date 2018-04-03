@@ -16,6 +16,9 @@ let symbols = ['fa-diamond', 'fa-diamond', 'fa-anchor', 'fa-anchor',
  *   - add each card's HTML to the page
  */
 
+/*
+*  Define the variables that will be used throughout the program
+*/
 //add a counter for the number of moves
 let moveCounter = 0;
 //add a counter for the number of matched cards
@@ -81,6 +84,9 @@ function displayCards() {//called onload body and on click restart
 
  	//reset stars
  	resetStars();
+
+ 	//make sure modal is closed
+	document.getElementById('modal').style.display = 'none';
 }
 
 
@@ -206,6 +212,28 @@ function checkEndGame() {
 		//stop timer
 		stopTime();
 
+		//write time to modal
+		document.getElementById('stats_time').innerHTML = timeCounter;
+
+		//write moves stats to modal
+		document.getElementById('stats_moves').innerHTML = moveCounter;
+
+		//write stars stats to modal (check if player has 0 stars)
+		if(starCounter === 0)
+			document.getElementById('stats_stars').innerHTML = "0 stars ... maybe next time you'll get some :)";
+		else {
+			//if player has more than 0 stars, get number of stars from the modal
+			let modalStars = document.getElementById('stats_stars');
+			//create each star according to the starCounter
+			for(let i = 0; i < starCounter; i++) {
+				let newStar = document.createElement('li');
+				newStar.className = 'fa fa-star';
+				modalStars.appendChild(newStar);
+			}
+		}
+
+		//display modal
+		document.getElementById('modal').style.display = 'block';
 	}
 }
 
@@ -243,7 +271,7 @@ function resetStars() {
 	starCounter = 3;
 	stars = document.querySelector('.stars').getElementsByTagName('li');
 	//iterate through the stars
-	for( let star of stars )
+	for(let star of stars)
 		//display the stars if hidden
 		star.style.display = 'inline-block';
 }
