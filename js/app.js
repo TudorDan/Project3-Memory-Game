@@ -24,6 +24,18 @@ let matchedCards = 0;
 //declare a variable where we will add the cards
 let deck = document.querySelector('.deck');
 
+//declare the list of opened cards, starting with all of them closed
+let openCards = [];
+
+//set the number of seconds
+let timeCounter = 0;
+
+//set the interval variable for the time
+let timer = 0;
+
+//flag for first move; true = first move, false = other moves; used to start time
+let firstClick = true;
+
 //create a function to display the cards on the page
 function displayCards() {//called onload body and on click restart
 
@@ -56,6 +68,12 @@ function displayCards() {//called onload body and on click restart
 
  	//reset number of matched cards
  	matchedCards = 0;
+
+ 	//reset time
+ 	firstClick = true;
+ 	timeCounter = 0;
+ 	if(timer) stopTime(timer);
+ 	writeTime(timeCounter);
 }
 
 
@@ -86,22 +104,27 @@ function shuffle(array) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
-//declare the list of opened cards, starting with all of them closed
-let openCards = [];
+
 
 //set up the event listener for a card
 deck.addEventListener('click', function processClickOn(card) {
-	//update and display moveCounter
-	updateMoveCounter(++moveCounter);
 
 	//check if a card was clicked (if its class name is card)
 	if(card.target.className === 'card') {
+		//check if the first card was clicked
+		if(firstClick) {
+			//stop checking the cards
+			firstClick = false;
+			//start the time counter
+			startTime();
+		}
 		//display the card's symbol (function is defined below)
 		showCard(card.target);
 		//add the card to a *list* of "open" cards (function is defined below)
 		addCard(card.target, openCards);
 		//check to see if two open cards match (function is defined below)
 		processList(openCards);
+
 	}
 });
 
@@ -135,8 +158,10 @@ function processList(openCards) {
 		else
 			hideCards(card1, card2);
 
-		//update the number of stars
-		updateStars();
+		//update and display moveCounter
+		updateMoveCounter(++moveCounter);
+
+
 
 		//check if all cards have matched (function is defined below)
 		checkEndGame();
@@ -169,9 +194,13 @@ function updateMoveCounter(moves) {
 //define function to check if all cards have matched
 function checkEndGame() {
 	//check if all cards are matched
-	if(matchedCards === 16)
-		//write moves stats to modal
-		document.getElementById("stats_moves").innerHTML = moveCounter;
+	if(matchedCards === 16) {
+		//stop timer
+		stopTime();
+
+		console.log('STOP');
+	}
+	console.log('\ncards : ' + matchedCards);
 }
 
 //define restart function
@@ -179,3 +208,23 @@ let reloadDeck = document.querySelector('.fa-repeat');
 reloadDeck.addEventListener('click', function() {
 	displayCards();
 });
+
+/*
+* Timer functions
+*/
+//define the time counter function
+function startTime() {
+	timer = setInterval(updateTime, 1000);// repeat with the interval of 1 second
+}
+//write the number of seconds for the html page
+function writeTime(timeCounter) {
+	document.getElementById('time').innerHTML = timeCounter;
+}
+//increment the number of seconds
+function updateTime() {
+	writeTime(++timeCounter);
+}
+//stop the time counter
+function stopTime() {
+	clearInterval(timer);
+}
