@@ -31,4 +31,4 @@ The data included in this game, that can not be retrieved either from the code p
     * [Modal Classes](https://www.w3schools.com/w3css/w3css_references.asp#modal)
     * [W3.CSS Animation Classes](https://www.w3schools.com/w3css/w3css_animate.asp)
 3. For the **JavaScript** section:
-    *[Scheduling: setTimeout and setInterval](https://javascript.info/settimeout-setinterval)
+    * [Scheduling: setTimeout and setInterval](https://javascript.info/settimeout-setinterval)
