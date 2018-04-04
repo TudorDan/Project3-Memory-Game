@@ -218,18 +218,13 @@ function checkEndGame() {
 		//write moves stats to modal
 		document.getElementById('stats_moves').innerHTML = moveCounter;
 
-		//write stars stats to modal (check if player has 0 stars)
-		if(starCounter === 0)
-			document.getElementById('stats_stars').innerHTML = "0 stars ... maybe next time you'll get some :)";
-		else {
-			//if player has more than 0 stars, get number of stars from the modal
-			let modalStars = document.getElementById('stats_stars');
-			//create each star according to the starCounter
-			for(let i = 0; i < starCounter; i++) {
-				let newStar = document.createElement('li');
-				newStar.className = 'fa fa-star';
-				modalStars.appendChild(newStar);
-			}
+		//write stars stats to modal
+		let modalStars = document.getElementById('stats_stars');
+		//create each star according to the starCounter
+		for(let i = 0; i < starCounter; i++) {
+			let newStar = document.createElement('li');
+			newStar.className = 'fa fa-star';
+			modalStars.appendChild(newStar);
 		}
 
 		//display modal
@@ -278,11 +273,7 @@ function resetStars() {
 
 //hide the stars on certain numbers of moves
 function updateStars() {
-	if(moveCounter > 28) {
-		stars[0].style.display = 'none';
-		starCounter = 0;
-	}
-	else if(moveCounter > 24) {
+	if(moveCounter > 24) {
 		stars[1].style.display = 'none';
 		starCounter = 1;
 	}
